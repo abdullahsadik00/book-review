@@ -1,18 +1,27 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './index.css';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./index.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./features/book/components/Home/Home";
+import Book from "./features/book/components/Book/Book";
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <Routes>
+          <Route to="/" element={<Home/>}/>
+          <Route path='/book/:bookTitle' element={<Book />}/>
+        </Routes>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>
 );
